@@ -29,7 +29,7 @@ return [
     'version' => '1.0@dev',
 
     'footer' => [
-        'name' => '北京博纳清承科技有限公司',
+        'name' => 'Young-blog',
         'href' => '/'
     ],
 
