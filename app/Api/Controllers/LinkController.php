@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Api\Controllers;
 
-use App\Link;
+use App\Models\Link;
 use App\Scopes\StatusScope;
 use Illuminate\Http\Request;
 use App\Http\Requests\LinkRequest;
 
-class LinkController extends ApiController
+class LinkController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -41,7 +41,7 @@ class LinkController extends ApiController
 
         Link::create($data);
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 
     /**
@@ -59,7 +59,7 @@ class LinkController extends ApiController
         $link = Link::withoutGlobalScope(StatusScope::class)->findOrFail($id);
         $link->update($input);
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 
     /**
@@ -88,7 +88,7 @@ class LinkController extends ApiController
     {
         Link::checkAuth()->findOrFail($id)->update($request->all());
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 
     /**
@@ -102,6 +102,6 @@ class LinkController extends ApiController
     {
         Link::checkAuth()->findOrFail($id)->delete();
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 }

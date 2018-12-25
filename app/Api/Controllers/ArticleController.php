@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Api\Controllers;
 
-use App\Article;
+use App\Models\Article;
 use App\Scopes\DraftScope;
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
 
-class ArticleController extends ApiController
+class ArticleController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -51,7 +51,7 @@ class ArticleController extends ApiController
 
         $article->tags()->sync(json_decode($request->get('tags')));
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 
     /**
@@ -86,7 +86,7 @@ class ArticleController extends ApiController
 
         $article->tags()->sync(json_decode($request->get('tags')));
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 
     /**
@@ -100,6 +100,6 @@ class ArticleController extends ApiController
     {
         Article::withoutGlobalScope(DraftScope::class)->findOrFail($id)->delete();
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 }

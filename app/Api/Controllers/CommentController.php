@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Api\Controllers;
 
 use App\Notifications\MentionedUser;
 use App\Tools\Mention;
@@ -8,9 +8,9 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\CommentRequest;
 use App\Notifications\ReceivedComment as Received;
-use App\Comment;
+use App\Models\Comment;
 
-class CommentController extends ApiController
+class CommentController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -97,7 +97,7 @@ class CommentController extends ApiController
 
         Comment::findOrFail($id)->update($data);
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 
     /**
@@ -114,6 +114,6 @@ class CommentController extends ApiController
 
         $comment->delete();
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 }

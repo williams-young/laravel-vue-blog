@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Api\Controllers;
 
-use App\Category;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\CategoryRequest;
 
-class CategoryController extends ApiController
+class CategoryController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -50,7 +50,7 @@ class CategoryController extends ApiController
         $category->fill($request->all());
         $category->save();
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 
     /**
@@ -72,7 +72,7 @@ class CategoryController extends ApiController
 
         $category->save();
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 
     /**
@@ -103,7 +103,7 @@ class CategoryController extends ApiController
         $category->fill($request->all());
         $category->save();
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 
     /**
@@ -117,6 +117,6 @@ class CategoryController extends ApiController
     {
         Category::destroy($id);
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 }

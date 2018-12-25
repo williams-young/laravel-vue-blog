@@ -12,9 +12,9 @@ use App\Notifications\FollowedUser;
 class UserController extends Controller
 {
     /**
-     * Redirect to user information page.
-     *
-     * @return redirect
+     * @purpose
+     * @date: 18-12-25
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function index()
     {
@@ -43,7 +43,7 @@ class UserController extends Controller
         $discussions = $user->discussions->take(10);
         $comments = $user->comments->take(10);
 
-        return view('user.index', compact('user', 'discussions', 'comments'));
+        return view('web.user.index', compact('user', 'discussions', 'comments'));
     }
 
     /**
@@ -63,7 +63,7 @@ class UserController extends Controller
 
         $followings = $user->followings;
 
-        return view('user.following', compact('user', 'followings'));
+        return view('web.user.following', compact('user', 'followings'));
     }
 
     /**
@@ -83,7 +83,7 @@ class UserController extends Controller
 
         $discussions = $user->discussions;
 
-        return view('user.discussions', compact('user', 'discussions'));
+        return view('web.user.discussions', compact('user', 'discussions'));
     }
 
     /**
@@ -103,7 +103,7 @@ class UserController extends Controller
 
         $comments = $user->comments;
 
-        return view('user.comments', compact('user', 'comments'));
+        return view('web.user.comments', compact('user', 'comments'));
     }
 
     /**
@@ -141,7 +141,7 @@ class UserController extends Controller
 
         $user = \Auth::user();
 
-        return view('user.profile', compact('user'));
+        return view('web.user.profile', compact('user'));
     }
 
     /**
@@ -223,6 +223,6 @@ class UserController extends Controller
 
         $user->unreadNotifications->markAsRead();
 
-        return view('user.notifications', compact('user'));
+        return view('web.user.notifications', compact('user'));
     }
 }

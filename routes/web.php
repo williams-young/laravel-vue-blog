@@ -13,27 +13,46 @@
 
 Route::group(['prefix' => '/'],function () {
     Route::get('login','Auth\LoginController@showLoginForm');
+    Route::post('login',['as' => 'login', 'uses' => 'Auth\LoginController@login']);
     Route::get('logout','Auth\LoginController@logout');
-    Route::post('login','Auth\LoginController@login');
+    Route::get('register','Auth\RegisterController@showRegistrationForm');
+    Route::post('register','Auth\RegisterController@register');
+    Route::get('password/reset','Auth\ResetPasswordController@showResetForm');
+    Route::post('password/reset','Auth\ResetPasswordController@reset');
 });
 
 
-Route::group(['prefix' => '/'], function () {
-    // Article
-    Route::get('/','ArticleController@index');
-    Route::get('/{slug}','ArticleController@show');
+Route::group([], function () {
 
     // Discussion
     Route::resource('discussion','DiscussionController', ['except' => 'destroy']);
 
-    // Search
-    Route::get('search', 'HomeController@search');
+    Route::post('password/change','UserController@changePassword')->middleware('auth');
 
     // Link
     Route::get('link', 'LinkController@index');
+
+    // Article
+    Route::get('/','ArticleController@index');
+    Route::get('/{slug}','ArticleController@show');
+
+    // Search
+    Route::get('search', 'HomeController@search');
+
+    // Category
+    Route::get('category/{category}', 'CategoryController@show');
+    Route::get('category', 'CategoryController@index');
+
+    // Tag
+    Route::get('tag', 'TagController@index');
+    Route::get('tag/{tag}', 'TagController@show');
+
 });
 
-Route::post('password/change','UserController@changePassword')->middleware('auth');
+/* Dashboard Index */
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'admin']], function () {
+    Route::get('{path?}', 'HomeController@dashboard')->where('path', '[\/\w\.-]*');
+});
 
 // Github Auth Route
 Route::group(['prefix' => 'auth/github'], function () {
@@ -72,20 +91,4 @@ Route::group(['middleware' => 'auth', 'prefix' => 'setting'], function () {
     Route::post('notification', 'SettingController@setNotification');
 });
 
-// Category
-Route::group(['prefix' => 'category'], function () {
-    Route::get('{category}', 'CategoryController@show');
-    Route::get('/', 'CategoryController@index');
-});
-
-// Tag
-Route::group(['prefix' => 'tag'], function () {
-    Route::get('/', 'TagController@index');
-    Route::get('{tag}', 'TagController@show');
-});
-
-/* Dashboard Index */
-Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'admin']], function () {
-    Route::get('{path?}', 'HomeController@dashboard')->where('path', '[\/\w\.-]*');
-});
 

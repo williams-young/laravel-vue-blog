@@ -19,8 +19,8 @@ return [
 
     // Meta
     'meta' => [
-        'keywords' => 'PJ Blog,blog,pigjian,laravel,vuejs',
-        'description' => 'Nothing is impossible in PJ Blog'
+        'keywords' => 'Young Blog,blog,laravel,vuejs',
+        'description' => 'Nothing is impossible in Young Blog'
     ],
 
     // Social Share
@@ -57,15 +57,15 @@ return [
     'footer' => [
         'github' => [
             'open' => true,
-            'url'  => 'https://github.com/jcc',
+            'url'  => 'https://github.com/williams-young',
         ],
-        'twitter' => [
+        'weibo' => [
             'open' => true,
-            'url'  => 'https://twitter.com/pigjian'
+            'url'  => 'https://weibo.com/u/2946267605/home?topnav=1&wvr=6'
         ],
-        'meta' => '© PJ Blog 2016. Powered By Jiajian Chan',
+        'meta' => '© Young Blog 2018. Powered By Williams Young',
     ],
 
-    'license' => 'Powered By Jiajian Chan.<br/>This article is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.',
+    'license' => 'Powered By Williams Young.<br/>This article is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.',
 
 ];

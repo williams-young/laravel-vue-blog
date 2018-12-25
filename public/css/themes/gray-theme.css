@@ -4,7 +4,7 @@ a {
 }
 
 .navbar {
-  background-color: #9caebf;
+  background-color: #17181a;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -78,7 +78,7 @@ input {
 }
 
 .jumbotron.jumbotron-fluid {
-  background-color: #9caebf;
+  background-color: #63b4d2;
 }
 
 .search input {
@@ -108,7 +108,7 @@ input {
 }
 
 .footer {
-  background-color: #9caebf;
+  background-color: #63b4d2;
   color: #fff;
   margin-top: 30px;
 }

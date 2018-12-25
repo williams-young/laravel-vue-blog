@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Api\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
-class RoleController extends ApiController
+class RoleController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -38,7 +38,7 @@ class RoleController extends ApiController
 
         Role::create($data);
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 
     /**
@@ -65,7 +65,7 @@ class RoleController extends ApiController
     {
         Role::findOrFail($id)->update($request->all());
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 
     /**
@@ -82,7 +82,7 @@ class RoleController extends ApiController
 
         app()['cache']->forget('spatie.permission.cache');
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 
     /**
@@ -96,6 +96,6 @@ class RoleController extends ApiController
     {
         Role::destroy($id);
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 }

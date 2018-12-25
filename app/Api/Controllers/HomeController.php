@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Api\Controllers;
 
-use App\Article;
-use App\Comment;
-use App\User;
-use App\Visitor;
+use App\Models\Article;
+use App\Models\Comment;
+use App\Models\User;
+use App\Models\Visitor;
 
-class HomeController extends ApiController
+class HomeController extends BaseController
 {
     public function statistics()
     {
@@ -18,6 +18,6 @@ class HomeController extends ApiController
 
         $data = compact('users', 'visitors', 'articles', 'comments');
 
-        return $this->response->json($data);
+        return $this->responseSuccess($data);
     }
 }

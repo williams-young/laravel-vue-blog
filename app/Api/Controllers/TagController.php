@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Api\Controllers;
 
-use App\Tag;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Http\Requests\TagRequest;
 
-class TagController extends ApiController
+class TagController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -48,7 +48,7 @@ class TagController extends ApiController
     {
         Tag::create($request->all());
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 
     /**
@@ -75,7 +75,7 @@ class TagController extends ApiController
     {
         Tag::findOrFail($id)->update($request->except('tag'));
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 
     /**
@@ -89,6 +89,6 @@ class TagController extends ApiController
     {
         Tag::destroy($id);
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 }

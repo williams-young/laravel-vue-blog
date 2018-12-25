@@ -1,18 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Api\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ImageRequest;
 
-class UploadController extends ApiController
+class UploadController extends BaseController
 {
     protected $manager;
 
     public function __construct()
     {
-        parent::__construct();
-
         $this->manager = app('uploader');
     }
 
@@ -27,7 +25,7 @@ class UploadController extends ApiController
     {
         $data = $this->manager->folderInfo($request->get('folder'));
 
-        return $this->response->json(['data' => $data]);
+        return $this->responseSuccess(['data' => $data]);
     }
 
     /**
@@ -53,7 +51,7 @@ class UploadController extends ApiController
 
         $result = $this->manager->store($file, $path, $fileName);
 
-        return $this->response->json($result);
+        return $this->responseSuccess($result);
     }
 
     /**
@@ -68,7 +66,7 @@ class UploadController extends ApiController
         $strategy = $request->get('strategy', 'images');
 
         if (!$request->hasFile('image')) {
-            return $this->response->json([
+            return $this->responseSuccess([
                 'success' => false,
                 'error' => 'no file found.',
             ]);
@@ -78,7 +76,7 @@ class UploadController extends ApiController
 
         $result = $this->manager->store($request->file('image'), $path);
 
-        return $this->response->json($result);
+        return $this->responseSuccess($result);
     }
 
     /**
@@ -94,7 +92,7 @@ class UploadController extends ApiController
 
         $data = $this->manager->createFolder($folder);
 
-        return $this->response->json(['data' => $data]);
+        return $this->responseSuccess(['data' => $data]);
     }
 
     /**
@@ -116,7 +114,7 @@ class UploadController extends ApiController
             return $this->response->withForbidden('The directory must be empty to delete it.');
         }
 
-        return $this->response->json(['data' => $data]);
+        return $this->responseSuccess(['data' => $data]);
     }
 
     /**
@@ -132,6 +130,6 @@ class UploadController extends ApiController
 
         $data = $this->manager->deleteFile($path);
 
-        return $this->response->json(['data' => $data]);
+        return $this->responseSuccess(['data' => $data]);
     }
 }

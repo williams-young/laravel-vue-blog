@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Api\Controllers;
 
-use App\Comment;
-use App\User;
+use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class MeController extends ApiController
+class MeController extends BaseController
 {
     /**
      * post up vote the comment by user.
@@ -28,6 +28,6 @@ class MeController extends ApiController
 
         ($type == 'up') ? User::upOrDownVote($user, $comment) : User::upOrDownVote($user, $comment, 'down');
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 }

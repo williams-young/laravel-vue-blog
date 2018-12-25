@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Api\Controllers;
 
 
 use Spatie\Permission\Models\Permission;
 
-class PermissionsController extends ApiController
+class PermissionsController extends BaseController
 {
     /**
      * Get all permissions.

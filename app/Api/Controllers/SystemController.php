@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Api\Controllers;
 
-class SystemController extends ApiController
+class SystemController extends BaseController
 {
     /**
      * Get the system info.
@@ -28,6 +28,6 @@ class SystemController extends ApiController
             'db_version'      => $version,
         ];
 
-        return $this->response->json($data);
+        return $this->responseSuccess($data);
     }
 }

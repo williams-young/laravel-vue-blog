@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Api\Controllers;
 
 use App\Visitor;
 use Illuminate\Http\Request;
 
-class VisitorController extends ApiController
+class VisitorController extends BaseController
 {
     /**
      * Display a listing of the resource.

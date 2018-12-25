@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Api\Controllers;
 
-use App\Discussion;
+use App\Models\Discussion;
 use Illuminate\Http\Request;
 use App\Http\Requests\DiscussionRequest;
 
-class DiscussionController extends ApiController
+class DiscussionController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -49,7 +49,7 @@ class DiscussionController extends ApiController
             $discussion->tags()->sync(json_decode($data['tags']));
         }
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 
     /**
@@ -66,7 +66,7 @@ class DiscussionController extends ApiController
 
         Discussion::checkAuth()->findOrFail($id)->update($input);
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 
     /**
@@ -107,7 +107,7 @@ class DiscussionController extends ApiController
 
         $discussion->update($data);
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 
     /**
@@ -121,6 +121,6 @@ class DiscussionController extends ApiController
     {
         Discussion::checkAuth()->findOrFail($id)->delete();
 
-        return $this->response->withNoContent();
+        return $this->responseSuccess();
     }
 }
